@@ -33,7 +33,7 @@
                                 @csrf
                                 @method('DELETE')
                                 <!--onclick="return confirm('Are you sure?')"-->
-                                <button onclick="return confirm('Sei sicuro?')" type="submit" class="btn btn-danger">Elimina</button>
+                                <button type="submit" class="btn btn-danger delete">Elimina</button>
                             </form>
                         </td>
                     </tr>
