@@ -95,7 +95,7 @@ class ComicController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'title' => 'required|max:30',
+            'title' => 'required|max:60',
             'description' => 'nullable|max:50000',
             'thumb' => 'required|url|max:255',
             'price' => 'required|max:8',
@@ -103,7 +103,7 @@ class ComicController extends Controller
             'sale_date' => 'nullable',
             'type' => 'required|max:50',
         ]);
-        
+
         $comic = Comic::findOrFail($id);
         $form_data = $request->all();
         $comic->update($form_data);
