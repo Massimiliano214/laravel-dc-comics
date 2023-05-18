@@ -3,5 +3,5 @@
 @section('title, Comic Shop')
 
 @section('content')
-    <h1>Ecco im miglior negozio online di comic Books</h1>
+    <h1>Ecco il miglior negozio online di comic Books</h1>
 @endsection
