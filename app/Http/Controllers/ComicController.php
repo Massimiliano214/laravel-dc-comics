@@ -101,7 +101,7 @@ class ComicController extends Controller
      */
     public function update(UpdateComicRequest $request, Comic $comic)
     {   
-        /*
+       /* 
         $request->validate([
             'title' => 'required|max:60',
             'description' => 'nullable|max:50000',
@@ -112,11 +112,14 @@ class ComicController extends Controller
             'type' => 'required|max:50',
         ]);
 
-         $comic = Comic::findOrFail($id);
+ $comic = Comic::findOrFail($id);
+         
          $form_data = $request->all();
         */
 
+        
         $form_data = $request->validated();
+        
        
         $comic->update($form_data);
         return redirect()->route('comics.show', ['comic' => $comic->id]);

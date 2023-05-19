@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Comic;
+namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Http\Requests\StoreComicRequest;
 
-class UpdateComicRequest extends StoreComicRequest
+class UpdateComicRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -14,7 +13,7 @@ class UpdateComicRequest extends StoreComicRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -25,7 +24,15 @@ class UpdateComicRequest extends StoreComicRequest
     public function rules()
     {
         return [
-            //
+            
+            'title' => 'required|max:30',
+            'description' => 'nullable|max:50000',
+            'thumb' => 'required|url|max:255',
+            'price' => 'required|max:8',
+            'series' => 'required|max:80',
+            'sale_date' => 'nullable',
+            'type' => 'required|max:50',
+            
         ];
     }
 }
