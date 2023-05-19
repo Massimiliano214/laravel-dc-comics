@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreComicRequest;
+use App\Http\Requests\UpdateComicRequest;
 use Illuminate\Http\Request;
 use App\Models\Comic;
+use Illuminate\Support\Facades\Validator;
 
 class ComicController extends Controller
 {
@@ -34,8 +37,9 @@ class ComicController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreComicRequest $request)
     {
+        /*
         $request->validate([
             'title' => 'required|max:30',
             'description' => 'nullable|max:50000',
@@ -47,7 +51,10 @@ class ComicController extends Controller
         ]);
 
         $form_data = $request->all();
-        
+        */
+
+        $form_data = $request->validated();
+
         $newComic = new Comic();
         $newComic->title = $form_data['title'];
         $newComic->description = $form_data['description'];
@@ -92,8 +99,9 @@ class ComicController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
+    public function update(UpdateComicRequest $request, Comic $comic)
+    {   
+        /*
         $request->validate([
             'title' => 'required|max:60',
             'description' => 'nullable|max:50000',
@@ -104,8 +112,12 @@ class ComicController extends Controller
             'type' => 'required|max:50',
         ]);
 
-        $comic = Comic::findOrFail($id);
-        $form_data = $request->all();
+         $comic = Comic::findOrFail($id);
+         $form_data = $request->all();
+        */
+
+        $form_data = $request->validated();
+       
         $comic->update($form_data);
         return redirect()->route('comics.show', ['comic' => $comic->id]);
     }
